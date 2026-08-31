@@ -8,9 +8,12 @@ Public Class ExcelDataExtractor
         Dim oDic As New Dictionary(Of String, (NewPartNumber As String, DescriptionRef As String, Quantity As Integer, Source As Integer, Nomenclature As String, Definition As String))
 
         ' CUIDADO esto hay que manejarlo de otra manera.
+        ' esta hardcodeado el 3 porque es la fila donde empiezan los datos,
+        ' pero si cambia el formato del excel esto puede fallar.
         If lastRow < 3 Then Return oDic
 
         For i As Integer = 3 To lastRow
+
             Dim key As String = oSheet.Cells(i, 4).Text.ToString().Trim()
 
             If Not String.IsNullOrWhiteSpace(key) AndAlso Not oDic.ContainsKey(key) Then
@@ -56,16 +59,11 @@ End Class
 
 
 'Function ExtractData(oSheet As Microsoft.Office.Interop.Excel.Worksheet) As Dictionary(Of String, ExcelData)
-
 '    Dim lastRow As Integer = GetLastRow(oSheet)
-
-
 '    ' Si la hoja no tiene datos después del encabezado, salimos temprano
 '    ' CUIDADO esto hay que manejarlo de otra manera.
 '    Dim oDic As New Dictionary(Of String, ExcelData)
 '    If lastRow < 3 Then Return oDic
-
-
 '    For i As Integer = 3 To lastRow
 '        Dim key As String = oSheet.Cells(i, 4).Text.ToString()
 '        ' Validamos que la clave no esté vacía antes de agregar
@@ -81,7 +79,6 @@ End Class
 '            oDic.Add(key, oExcelData)
 '        End If
 '    Next
-
 '    Return oDic
 'End Function
 

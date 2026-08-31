@@ -8,11 +8,9 @@ Public Class ExcelDataInjector
                    oDiccType3 As Dictionary(Of String, (FullPath As String, FileName As String, ImageFilePath As String, Product As ProductStructureTypeLib.Product, Quantity As Integer, Level As Integer, Source As ProductStructureTypeLib.CatProductSource)))
 
 
-
         'Esto está hardcodeado, se debe mejorar.
         Dim i As Integer = 3
         Dim oShape As Microsoft.Office.Interop.Excel.Shape
-
         Dim ultimoFila As Integer = oDiccType3.Count + 2
         oSheetListView.Range("A3:L" & ultimoFila).NumberFormat = "@"
 
